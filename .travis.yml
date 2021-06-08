@@ -9,3 +9,16 @@ before_install: # -t for naming and use as key
 script:
   - docker run -e CI=true napatud/docker-react npm run test
 # skip_cleanup: true
+
+# S3 Scalable aws
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-1-149592319634"
+  bucket_path: "docker-react"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY #key on IAM AWS
+  secret_access_key: $AWS_SECRET_KEY

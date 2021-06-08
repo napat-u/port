@@ -1,0 +1,11 @@
+language: generic
+sudo: required #permission
+services: # tell travis to use docker file
+  - docker
+
+before_install: # -t for naming and use as key
+  - docker build -t napatud/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true napatud/docker-react npm run test
+# skip_cleanup: true
